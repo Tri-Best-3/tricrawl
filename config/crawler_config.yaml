@@ -31,3 +31,12 @@ spiders:
   # Abyss
   abyss:
     target_url: "http://3ev4metjirohtdpshsqlkrqcmxq6zu3d7obrdhglpy5jpbr7whmlfgqd.onion/"
+
+  best_carding_world:
+    target_url: "http://bestteermb42clir6ux7xm76d4jjodh3fpahjqgbddbmfrgp4skg2wqd.onion/"
+    endpoints:
+      view_forum: "/viewforum.php?f=30"
+    
+    # 게시판별 수집 페이지 수 제한 (Endpoint Key 기준)
+    boards:
+      view_forum: 2
