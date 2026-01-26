@@ -69,6 +69,8 @@ patterns:
     - fullz
     - personal info
     - kyc data
+    - password
+    - address
     # credentials
     - credential stuffing
     - access for sale

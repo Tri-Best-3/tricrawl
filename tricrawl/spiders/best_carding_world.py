@@ -1,7 +1,7 @@
 """
 Best Carding World Forum Spider
 Target: http://bestteermb42clir6ux7xm76d4jjodh3fpahjqgbddbmfrgp4skg2wqd.onion/
-Type: XenForo Forum
+Type: phpBB Forum (sid=... , a.topictitle, li.row, dd.lastpost, ...)
 """
 import scrapy
 import structlog
@@ -173,6 +173,42 @@ class BestCardingWorldSpider(scrapy.Spider):
             item["content"] = ""
             item["category"] = "data_breach"
 
-            yield item
+            # yield item
 
-    
+            yield scrapy.Request(
+                url=url,
+                callback=self.parse_topic,
+                cb_kwargs={"item": item},
+                dont_filter=True,  # 같은 URL이더라도 항상 확인하고 싶으면 True
+            )
+        
+
+    # 게시글 상세 페이지 파싱
+    def parse_topic(self, response, item: LeakItem):
+        # phpBB 계열 (div.postbody)
+        # post = (
+        #     response.css("div.postbody").getall()
+        # )
+
+        # # postbody가 여러 개면 첫 번째를 기준으로 본문 추출
+        # first_post = response.css("div.postbody").get()
+        # if not first_post:
+        #     # fallback: phpBB 변형들
+        #     first_post = response.css("div.post div.content").get()
+
+        # 우선순위: div.postbody .content → div.postbody 전체
+        text_parts = response.css("div.postbody .content *::text").getall()
+        if not text_parts:
+            text_parts = response.css("div.postbody *::text").getall()
+
+        tmp = " ".join(text_parts)
+        content = " ".join((tmp or "").split())
+
+        # 길이 제한
+        MAX_CONTENT_LEN = 2000
+        if len(content) > MAX_CONTENT_LEN:
+            content = content[:MAX_CONTENT_LEN] + " ..."
+
+        item["content"] = content
+
+        yield item
