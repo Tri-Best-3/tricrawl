@@ -31,3 +31,16 @@ spiders:
   # Abyss
   abyss:
     target_url: "http://3ev4metjirohtdpshsqlkrqcmxq6zu3d7obrdhglpy5jpbr7whmlfgqd.onion/"
+
+  lockbit:
+    target_url: "http://lockbit3olp7oetlc4tl5zydnoluphh7fvdt5oa6arcp2757r7xkutid.onion/"
+
+  best_carding_world:
+    target_url: "http://bestteermb42clir6ux7xm76d4jjodh3fpahjqgbddbmfrgp4skg2wqd.onion/"
+    endpoints:
+      view_forum: "/viewforum.php?f=30"
+    boards:
+      view_forum: 2
+
+  play:
+    target_url: "http://mbrlkbtq5jonaqkurjwmxftytyn2ethqvbxfu4rgjbkkknndqwae6byd.onion/"

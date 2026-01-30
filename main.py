@@ -467,6 +467,9 @@ def run_crawler(spider="test", limit=None):
         "test": "Test Integration (Mockup Crawl + Webhook)",
         "darknet_army": "DarkNetArmy (Dark Web Forum)",
         "abyss": "Abyss (Ransomware Site)",
+        "lockbit": "LockBit (Ransomware Site)",
+        "best_carding_world": "BestCardingWorld (Dark Web Forum)",
+        "play": "Play (Ransomware Site)",
     }
 
     # 설정 파일 로드
